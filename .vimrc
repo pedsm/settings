@@ -2,8 +2,14 @@ set nocompatible              " be iMproved, required
 filetype off
 command! MakeTags !ctags -R .
 command! CLatex !pdflatex %
-command Lorem :-1read /home/pedro/.vim/.skeleton/lorem.txt<CR> 
+command Lorem :-1read ~/home/pedro/.vim/.skeleton/lorem.txt<CR> 
 command SpellCheck :setlocal spell spelllang=en_gb
+map <F2> :NERDTree<CR>
+"presentation VIM MODE
+" map <F2> <PageDown>
+" map <F3> <PageUp>
+" map <F4> >>gUU
+" map <F5> u
 
 
 " set the runtime path to include Vundle and initialize
@@ -20,7 +26,6 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'dhruvasagar/vim-table-mode'
-
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
@@ -32,7 +37,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'kchmck/vim-coffee-script'
 
 
-colorscheme wombat
+colorscheme monokai-chris
 
 "Plugin 'file://home/pedro/Dev/vim-powerline/plugin/Powerline.vim'
 
@@ -46,11 +51,12 @@ set shiftwidth=4
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 let g:Powerline_symbols = 'fancy'
-"let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
+let g:airline_powerline_fonts = 1
 
 let g:airline_left_sep = '»'
 let g:airline_right_sep = '«'
