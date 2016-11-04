@@ -1,10 +1,13 @@
 set nocompatible              " be iMproved, required
 filetype off
 command! MakeTags !ctags -R .
-command! CLatex !pdflatex %
+command! CLatex !pdflatex %; rm *.aux; rm *.log; rm *.out; rm *.toc
+command! CPhp !php %
 command Lorem :-1read ~/home/pedro/.vim/.skeleton/lorem.txt<CR> 
 command SpellCheck :setlocal spell spelllang=en_gb
 map <F2> :NERDTree<CR>
+imap jj <ESC>
+
 "presentation VIM MODE
 " map <F2> <PageDown>
 " map <F3> <PageUp>
@@ -34,10 +37,15 @@ Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'pangloss/vim-javascript'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'mattn/emmet-vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin '2072/PHP-Indenting-for-VIm'
+" Plugin 'ryanoasis/vim-devicons'
 
 
-colorscheme monokai-chris
+
+
+colorscheme molokai_dark
 
 "Plugin 'file://home/pedro/Dev/vim-powerline/plugin/Powerline.vim'
 
