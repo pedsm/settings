@@ -7,7 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="avit"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="false"
@@ -87,4 +87,6 @@ alias gst="git status"
 alias ga="git add ."
 export ANDROID_HOME=~/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH = $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+# export PATH = $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+tmux
+clear

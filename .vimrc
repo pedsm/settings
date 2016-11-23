@@ -5,8 +5,11 @@ command! CLatex !pdflatex %; rm *.aux; rm *.log; rm *.out; rm *.toc
 command! CPhp !php %
 command Lorem :-1read ~/home/pedro/.vim/.skeleton/lorem.txt<CR> 
 command SpellCheck :setlocal spell spelllang=en_gb
+command EditRC :e ~/.vimrc
+map <C-i> gg=G<C-o><C-o>
 map <F2> :NERDTree<CR>
 imap jj <ESC>
+nmap <F7> :MakeTags <CR> :TagbarToggle<CR>
 
 "presentation VIM MODE
 " map <F2> <PageDown>
@@ -23,7 +26,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-""Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
@@ -36,16 +38,21 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'pangloss/vim-javascript'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'mattn/emmet-vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin '2072/PHP-Indenting-for-VIm'
-" Plugin 'ryanoasis/vim-devicons'
+Plugin 'majutsushi/tagbar'
+Plugin 'elzr/vim-json'
+Plugin 'SearchComplete'
+Plugin 'ap/vim-css-color'
+Plugin 'ryanoasis/vim-devicons'
+" Plugin 'flazz/vim-cmolokai_darkolorschemes'
+" Plugin 'mhinz/vim-signify'
+" Plugin 'ShowMarks'
+" Plugin 'Lokaltog/vim-powerline'
 
-
-
-
-colorscheme molokai_dark
+set background=dark
+colorscheme solarized
 
 "Plugin 'file://home/pedro/Dev/vim-powerline/plugin/Powerline.vim'
 
@@ -58,6 +65,10 @@ set softtabstop=4
 set shiftwidth=4
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
+set encoding=utf-8 " Necessary to show Unicode glyphs
+set listchars=tab:>-,trail:_ list
+
+let g:AutoPairsFlyMode = 0
 let g:Powerline_symbols = 'fancy'
 
 if !exists('g:airline_symbols')
@@ -78,7 +89,6 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
-
 
 
 let g:airline#extensions#tabline#enabled = 1
