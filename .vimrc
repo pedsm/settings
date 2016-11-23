@@ -8,6 +8,8 @@ command SpellCheck :setlocal spell spelllang=en_gb
 command EditRC :e ~/.vimrc
 map <C-i> gg=G<C-o><C-o>
 map <F2> :NERDTree<CR>
+" this allows for the usage of the system clipboard
+map <F5> "+
 imap jj <ESC>
 nmap <F7> :MakeTags <CR> :TagbarToggle<CR>
 
