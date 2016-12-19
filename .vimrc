@@ -4,14 +4,14 @@ command! MakeTags !ctags -R .
 command! CLatex !pdflatex %; rm *.aux; rm *.log; rm *.out; rm *.toc
 command! CPhp !php %
 " OP Easter eggs
-command! Weather !curl -4 wttr.in/Nottingham
+command! Weather !curl -4 wttr.in
 command! Moon !curl -4 wttr.in/Moon
 " end of easter eggs
 command Lorem :-1read ~/home/pedro/.vim/.skeleton/lorem.txt<CR> 
 command SpellCheck :setlocal spell spelllang=en_gb
 command EditRC :e ~/.vimrc
 " new mappings use them
-map <C-i> gg=G<C-o><C-o>
+map <C-i> gg=G<C-o><C-o>zz
 map <F2> :NERDTree<CR>
 " this allows for the usage of the system clipboard
 map <F5> "+
@@ -53,6 +53,8 @@ Plugin 'elzr/vim-json'
 Plugin 'SearchComplete'
 Plugin 'ap/vim-css-color'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'pedsm/vim-paragraph'
 " Snippets for days
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -87,6 +89,7 @@ set encoding=utf-8 " Necessary to show Unicode glyphs
 set listchars=tab:>-,trail:_ list
 set hlsearch
 set noshowmode
+let &t_Co=256
 
 let g:AutoPairsFlyMode = 0
 let g:Powerline_symbols = 'fancy'
