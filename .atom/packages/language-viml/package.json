@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/tmp/d-1161129-32502-1b20u1i/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/tmp/d-1161129-32502-1b20u1i/package.tgz",
+        "spec": "/tmp/d-1161129-32502-1b20u1i/package.tgz",
+        "type": "local"
+      },
+      "/tmp/apm-install-dir-1161129-32502-lv9r6c"
+    ]
+  ],
+  "_from": "../d-1161129-32502-1b20u1i/package.tgz",
+  "_id": "language-viml@1.1.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/language-viml",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/tmp/d-1161129-32502-1b20u1i/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/tmp/d-1161129-32502-1b20u1i/package.tgz",
+    "spec": "/tmp/d-1161129-32502-1b20u1i/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-1161129-32502-1b20u1i/package.tgz",
+  "_shasum": "b319ebf9dbed774f635ee470181392daf9ef0380",
+  "_shrinkwrap": null,
+  "_spec": "/tmp/d-1161129-32502-1b20u1i/package.tgz",
+  "_where": "/tmp/apm-install-dir-1161129-32502-lv9r6c",
+  "author": {
+    "name": "Evan Hahn"
+  },
+  "bugs": {
+    "url": "https://github.com/Alhadis/language-viml/issues"
+  },
+  "dependencies": {},
+  "description": "Vim Script language support for Atom",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/Alhadis/language-viml#readme",
+  "keywords": [
+    "Vim",
+    "VimScript",
+    "VimL",
+    "Vim Script",
+    "Vi"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "John Gardner",
+      "email": "<gardnerjohng@gmail.com",
+      "url": "https://github.com/Alhadis"
+    }
+  ],
+  "name": "language-viml",
+  "optionalDependencies": {},
+  "readme": "# Vimscript highlighting for Atom\n\n<img src=\"https://raw.githubusercontent.com/Alhadis/language-viml/master/preview.png\" alt=\"If Bram Moolenaar wrote CoffeeScript\" width=\"817\" />\n\nOriginally [ported](http://atom.io/docs/v0.60.0/converting-a-text-mate-bundle) from a [VimL highlighting bundle for TextMate](https://github.com/skammer/textmate-viml).\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alhadis/language-viml.git"
+  },
+  "version": "1.1.3",
+  "vimSource": "https://raw.githubusercontent.com/vim/vim/master/runtime/syntax/vim.vim"
+}

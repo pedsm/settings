@@ -1,0 +1,36 @@
+"*":
+  "atom-terminal": {}
+  core:
+    disabledPackages: [
+      "activate-power-mode"
+    ]
+    telemetryConsent: "yes"
+    themes: [
+      "one-dark-ui"
+      "monokai-seti"
+    ]
+  editor:
+    fontSize: 16
+    softTabs: false
+    softWrap: true
+    tabLength: 4
+    tabType: "hard"
+  "exception-reporting":
+    userId: "19558f18-cb69-7af8-09c5-2e2ccb020056"
+  "tree-view": {}
+  "vim-mode":
+    useSmartcaseForSearch: true
+  welcome:
+    showOnStartup: false
+".c.source":
+  editor:
+    tabLength: 4
+".cpp.source":
+  editor:
+    tabLength: 4
+".diff":
+  editor:
+    tabLength: 4
+".plain.text":
+  editor:
+    tabLength: 4
