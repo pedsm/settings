@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/tmp/d-11707-27960-lune0q/package.tgz",
+        "raw": "/tmp/d-11708-29767-1s5l5sl/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/tmp/d-11707-27960-lune0q/package.tgz",
-        "spec": "/tmp/d-11707-27960-lune0q/package.tgz",
+        "rawSpec": "/tmp/d-11708-29767-1s5l5sl/package.tgz",
+        "spec": "/tmp/d-11708-29767-1s5l5sl/package.tgz",
         "type": "local"
       },
-      "/tmp/apm-install-dir-11707-27960-13hal5r"
+      "/tmp/apm-install-dir-11708-29767-1fs776m"
     ]
   ],
-  "_from": "../d-11707-27960-lune0q/package.tgz",
+  "_from": "../d-11708-29767-1s5l5sl/package.tgz",
   "_id": "vim-mode@0.65.2",
   "_inCache": true,
   "_installable": true,
   "_location": "/vim-mode",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/tmp/d-11707-27960-lune0q/package.tgz",
+    "raw": "/tmp/d-11708-29767-1s5l5sl/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/tmp/d-11707-27960-lune0q/package.tgz",
-    "spec": "/tmp/d-11707-27960-lune0q/package.tgz",
+    "rawSpec": "/tmp/d-11708-29767-1s5l5sl/package.tgz",
+    "spec": "/tmp/d-11708-29767-1s5l5sl/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-11707-27960-lune0q/package.tgz",
+  "_resolved": "file:../d-11708-29767-1s5l5sl/package.tgz",
   "_shasum": "3952fdd675e97f80e4673e20f150a78a639fa12b",
   "_shrinkwrap": null,
-  "_spec": "/tmp/d-11707-27960-lune0q/package.tgz",
-  "_where": "/tmp/apm-install-dir-11707-27960-13hal5r",
+  "_spec": "/tmp/d-11708-29767-1s5l5sl/package.tgz",
+  "_where": "/tmp/apm-install-dir-11708-29767-1fs776m",
   "bugs": {
     "url": "https://github.com/atom/vim-mode/issues"
   },

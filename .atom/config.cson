@@ -4,7 +4,7 @@
     disabledPackages: [
       "activate-power-mode"
     ]
-    telemetryConsent: "yes"
+    telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
       "monokai-seti"
@@ -17,9 +17,14 @@
     tabType: "hard"
   "exception-reporting":
     userId: "19558f18-cb69-7af8-09c5-2e2ccb020056"
+  "git-plus":
+    general:
+      _analyticsUserId: "8b7af92a-491a-4d5d-b0d9-9cc3f3fb1ddf"
   "tree-view": {}
   "vim-mode":
     useSmartcaseForSearch: true
+  "vim-mode-plus":
+    useClipboardAsDefaultRegister: true
   welcome:
     showOnStartup: false
 ".c.source":

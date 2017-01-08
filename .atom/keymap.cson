@@ -31,5 +31,7 @@
 # Atom Flight Manual:
 # http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
 
-'atom-text-editor':
-	'ctrl-o': 'unset'
+'atom-workspace':
+  'ctrl-i':     'cursor-history:next'
+  'ctrl-o':     'cursor-history:prev'
+  'z =': 'spell-check:correct-misspelling'
