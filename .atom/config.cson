@@ -3,6 +3,7 @@
   core:
     disabledPackages: [
       "activate-power-mode"
+      "whitespace"
     ]
     telemetryConsent: "limited"
     themes: [
@@ -10,16 +11,20 @@
       "monokai-seti"
     ]
   editor:
-    fontSize: 16
+    fontFamily: "Fira Code"
+    fontSize: 20
+    scrollPastEnd: true
+    showIndentGuide: true
     softTabs: false
     softWrap: true
     tabLength: 4
-    tabType: "hard"
   "exception-reporting":
     userId: "19558f18-cb69-7af8-09c5-2e2ccb020056"
   "git-plus":
     general:
       _analyticsUserId: "8b7af92a-491a-4d5d-b0d9-9cc3f3fb1ddf"
+  "markdown-preview-plus":
+    enableLatexRenderingByDefault: true
   "tree-view": {}
   "vim-mode":
     useSmartcaseForSearch: true
