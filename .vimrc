@@ -7,11 +7,10 @@ command! CPhp !php %
 command! Weather !curl -4 wttr.in
 command! Moon !curl -4 wttr.in/Moon
 " end of easter eggs
-command Lorem :-1read ~/home/pedro/.vim/.skeleton/lorem.txt<CR> 
-command SpellCheck :setlocal spell spelllang=en_gb
+command Lorem :-1read ~/home/pedro/.vim/.skeleton/lorem.txt<CR>
 command EditRC :e ~/.vimrc
 " new mappings use them
-map <C-i> gg=G<C-o><C-o>zz
+map <C-i> gg=G<C-o><C-o>zz:%s/\s\+$//e<CR>
 map <F2> :NERDTree<CR>
 " this allows for the usage of the system clipboard
 map <F5> "+
@@ -36,7 +35,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -54,11 +52,13 @@ Plugin 'SearchComplete'
 Plugin 'ap/vim-css-color'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'scrooloose/syntastic'
 Plugin 'pedsm/vim-paragraph'
 " Snippets for days
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
+Plugin 'editorconfig/editorconfig-vim'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="`"
 let g:UltiSnipsJumpForwardTrigger="="
@@ -66,13 +66,21 @@ let g:UltiSnipsJumpBackwardTrigger="-"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-" Plugin 'flazz/vim-cmolokai_darkolorschemes'
-" Plugin 'mhinz/vim-signify'
-" Plugin 'ShowMarks'
-" Plugin 'Lokaltog/vim-powerline'
+" Vim 8.0 territory
+if v:version >= 800
+    Plugin 'skywind3000/asyncrun.vim'
+    Plugin 'pedsm/sprint'
+    Plugin 'metakirby5/codi.vim'
+    Plugin 'w0rp/ale'
+endif
+
 
 set background=dark
-colorscheme solarized
+colorscheme molokai
+let g:airline_theme = 'badwolf'
+" Gvim set up
+set guioptions-=T
+set gfn=Ubuntu\ Mono\ derivative\ Powerline\ 14
 
 "Plugin 'file://home/pedro/Dev/vim-powerline/plugin/Powerline.vim'
 
@@ -86,7 +94,7 @@ set shiftwidth=4
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 set encoding=utf-8 " Necessary to show Unicode glyphs
-set listchars=tab:>-,trail:_ list
+" set listchars=tab:>-,trail:_ list
 set hlsearch
 set noshowmode
 let &t_Co=256
@@ -99,11 +107,8 @@ if !exists('g:airline_symbols')
 endif
 
 let g:airline_powerline_fonts = 1
-
-let g:airline_left_sep = '»'
-let g:airline_right_sep = '«'
-let g:airline_left_sep = '▙'
-let g:airline_right_sep = '▟'
+" let g:airline_left_sep = '▙'
+" let g:airline_right_sep = '▟'
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
