@@ -35,3 +35,4 @@
   'ctrl-i':     'cursor-history:next'
   'ctrl-o':     'cursor-history:prev'
   'z =': 'spell-check:correct-misspelling'
+ 

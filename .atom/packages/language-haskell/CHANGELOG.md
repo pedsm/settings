@@ -1,3 +1,24 @@
+## 1.12.1
+* Fix comments in imports (now before ())
+
+## 1.12.0
+* Readme update
+* Better handling of prelude identifiers
+* Revert "Add scope tags to Prelude identifiers"
+
+## 1.11.0
+* Finally fix snippets dependency (hopefully)
+* Install snippets package in travis tests
+* Specs update
+* Add scope tags to Prelude identifiers
+
+## 1.10.6
+* Add mdo, rec, proc keywords
+* Add travis tests
+
+## 1.10.5
+* Add cpphs extension to Haskell grammar
+
 ## 1.10.4
 * Make operatorChar PCRE-compatible
 * Add applyEndPatternLast to module_exports

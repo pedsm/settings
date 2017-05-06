@@ -26,6 +26,18 @@ atom-text-editor {
   // background-color: hsl(180, 24%, 12%);
   //Fira code 
   text-rendering: optimizeLegibility;
+  font-family: "Fira Code";
+  text-rendering: optimizeLegibility;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+atom-text-editor::shadow{
+    .entity.other.attribute-name, .variable, .comment{
+        font-family: "Operator Mono";
+        font-size: 14px;
+        font-style: italic;
+    }
 }
 
 // To style other content in the text editor's shadow DOM, use the ::shadow expression

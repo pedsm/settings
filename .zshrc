@@ -7,7 +7,9 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+# airline theme
+# ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="false"
@@ -51,7 +53,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux)
+plugins=(git tmux react-native)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,8 +87,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gst="git status"
 alias ga="git add ."
+alias . tf/bin/activate="venvTF"
+alias matlab="/usr/local/MATLAB/R2016b/bin/matlab"
+# alias rustc="$HOME/.cargo/bin/rustc"
+# alias cargo="$HOME/.cargo/bin/cargo"
 export ANDROID_HOME=~/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+export PATH=${PATH}:~/.cargo/bin
+export GOPATH=~/Dev/go
 # export PATH = $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 clear

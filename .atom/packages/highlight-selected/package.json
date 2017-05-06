@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/tmp/d-116919-8299-dzpr33/package.tgz",
+        "raw": "/tmp/d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/tmp/d-116919-8299-dzpr33/package.tgz",
-        "spec": "/tmp/d-116919-8299-dzpr33/package.tgz",
+        "rawSpec": "/tmp/d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
+        "spec": "/tmp/d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
         "type": "local"
       },
-      "/tmp/apm-install-dir-116919-8299-14lza2o"
+      "/tmp/apm-install-dir-117326-9571-8kbpb9.paclvunmi"
     ]
   ],
-  "_from": "../d-116919-8299-dzpr33/package.tgz",
-  "_id": "highlight-selected@0.11.2",
+  "_from": "../d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
+  "_id": "highlight-selected@0.13.1",
   "_inCache": true,
   "_installable": true,
   "_location": "/highlight-selected",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/tmp/d-116919-8299-dzpr33/package.tgz",
+    "raw": "/tmp/d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/tmp/d-116919-8299-dzpr33/package.tgz",
-    "spec": "/tmp/d-116919-8299-dzpr33/package.tgz",
+    "rawSpec": "/tmp/d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
+    "spec": "/tmp/d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-116919-8299-dzpr33/package.tgz",
-  "_shasum": "b218d2f9dd493e9dfb6b0d206e69f0cc831cb221",
+  "_resolved": "file:../d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
+  "_shasum": "8b6ce153f680dfd60ab003835e666266c4420e5f",
   "_shrinkwrap": null,
-  "_spec": "/tmp/d-116919-8299-dzpr33/package.tgz",
-  "_where": "/tmp/apm-install-dir-116919-8299-14lza2o",
+  "_spec": "/tmp/d-117326-9571-5byz5v.j0f4fpf1or/package.tgz",
+  "_where": "/tmp/apm-install-dir-117326-9571-8kbpb9.paclvunmi",
   "bugs": {
     "url": "https://github.com/richrace/highlight-selected/issues"
   },
@@ -47,7 +47,7 @@
     }
   },
   "dependencies": {
-    "underscore-plus": "1.x"
+    "grim": "^2.0.1"
   },
   "description": "Highlights the current word selected when double clicking",
   "devDependencies": {
@@ -59,7 +59,7 @@
     "shasum": "7c9da46b1412aceb069f8ca2ca54d014986ad408"
   },
   "engines": {
-    "atom": ">=0.174.0 <2.0.0"
+    "atom": ">=1.13.0 <2.0.0"
   },
   "homepage": "https://github.com/richrace/highlight-selected",
   "license": "MIT",
@@ -70,7 +70,8 @@
     "highlightSelected": {
       "description": "Exposes Highlight Selected Events",
       "versions": {
-        "1.0.0": "provideHighlightSelectedV1"
+        "1.0.0": "provideHighlightSelectedV1Deprecated",
+        "2.0.0": "provideHighlightSelectedV2"
       }
     }
   },
@@ -80,5 +81,5 @@
     "type": "git",
     "url": "git+https://github.com/richrace/highlight-selected.git"
   },
-  "version": "0.11.2"
+  "version": "0.13.1"
 }

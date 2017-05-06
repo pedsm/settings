@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/tmp/d-11707-27916-nhm8pc/package.tgz",
+        "raw": "/tmp/d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/tmp/d-11707-27916-nhm8pc/package.tgz",
-        "spec": "/tmp/d-11707-27916-nhm8pc/package.tgz",
+        "rawSpec": "/tmp/d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
+        "spec": "/tmp/d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
         "type": "local"
       },
-      "/tmp/apm-install-dir-11707-27916-xxlfck"
+      "/tmp/apm-install-dir-117327-29622-13141n8.g3hnuvunmi"
     ]
   ],
-  "_from": "../d-11707-27916-nhm8pc/package.tgz",
-  "_id": "ex-mode@0.13.1",
+  "_from": "../d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
+  "_id": "ex-mode@0.14.0",
   "_inCache": true,
   "_installable": true,
   "_location": "/ex-mode",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/tmp/d-11707-27916-nhm8pc/package.tgz",
+    "raw": "/tmp/d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/tmp/d-11707-27916-nhm8pc/package.tgz",
-    "spec": "/tmp/d-11707-27916-nhm8pc/package.tgz",
+    "rawSpec": "/tmp/d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
+    "spec": "/tmp/d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-11707-27916-nhm8pc/package.tgz",
-  "_shasum": "9199ea3c2c6d342c19e3680c9e841c96e9b074e9",
+  "_resolved": "file:../d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
+  "_shasum": "ad95cf906758fdbe486b968265af06ac5c96e034",
   "_shrinkwrap": null,
-  "_spec": "/tmp/d-11707-27916-nhm8pc/package.tgz",
-  "_where": "/tmp/apm-install-dir-11707-27916-xxlfck",
+  "_spec": "/tmp/d-117327-29622-1wb25we.bptsli8uxr/package.tgz",
+  "_where": "/tmp/apm-install-dir-117327-29622-13141n8.g3hnuvunmi",
   "activationCommands": {
     "atom-workspace": "ex-mode:open"
   },
@@ -82,5 +82,5 @@
     "type": "git",
     "url": "git+https://github.com/lloeki/ex-mode.git"
   },
-  "version": "0.13.1"
+  "version": "0.14.0"
 }

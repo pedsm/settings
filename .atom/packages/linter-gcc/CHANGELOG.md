@@ -1,3 +1,12 @@
+## 0.7.1
+* Fix for 'trim' undefined error and compile_commands.json
+
+## 0.7.0
+* Add combined C/C++ compile path
+* Add CMake integration
+* Merge pull reguests for French language Fix
+* Merge pull request for Deprecated selector
+
 ## 0.6.15
 * Fix undefined string error
 

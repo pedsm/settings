@@ -26,6 +26,8 @@ $ cabal install ghc-mod
 
 After this process finishes, you'll have `ghc-mod`, `ghc-modi` and `hlint` available in `$HOME/.cabal/bin/` directory.
 
+Note for Mac users: on OSX cabal by default installs files into `$HOME/Library/Haskell/bin`
+
 Please note, that for ghc>=7.10 and/or cabal>=1.22, you need ghc-mod>=5.3.0.0. ghc-mod versions before 5.3.0.0 won't work.
 
 User interface is provided by [ide-haskell](https://atom.io/packages/ide-haskell)
@@ -105,6 +107,8 @@ You can find description in [completion-backend.coffee][2]
 In some cases, it could be useful to disable ghc-mod completely for a given project (e.g. GHCJS), or suppress error pop-ups (e.g. in case of known ghc-mod bugs where some features don't work, or don't always work).
 
 You can create `.haskell-ghc-mod.json` file in project root (i.e. directory containing a `*.cabal` file, or -- in case of plain projects -- Atom's project root directory).
+
+`.haskell-ghc-mod.json` from Atom project root will also be honored, if it exists, with lower priority.
 
 You can also create a global config file in `${ATOM_CONFIG_DIR}/haskell-ghc-mod.json`. `${ATOM_CONFIG_DIR}` is usually `${HOME}/.atom`, but you can check it's path by running `atom.getConfigDirPath()` in Atom's developer console (View → Developer → Toggle Developer Tools → Console).
 

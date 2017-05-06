@@ -301,6 +301,8 @@ module.exports=
         include: '#function_type_declaration'
       ,
         include: '#haskell_expr'
+      ,
+        include: '#comments'
     ]
   regular_import:
     name: 'meta.import.haskell'
@@ -316,6 +318,8 @@ module.exports=
         match: /{lb}(qualified|as|hiding){rb}/
         captures:
           1: name: 'keyword.other.haskell'
+      ,
+        include: '#comments'
     ]
   data_decl:
     name: 'meta.declaration.type.data.haskell'
@@ -389,7 +393,7 @@ module.exports=
     match: /{lb}infix[lr]?{rb}/
   ,
     name: 'keyword.control.haskell'
-    match: /{lb}(do|if|then|else|case|of|let|in|default){rb}/
+    match: /{lb}(do|if|then|else|case|of|let|in|default|mdo|rec|proc){rb}/
   ]
   c_preprocessor:
     name: 'meta.preprocessor.c'
@@ -479,7 +483,7 @@ module.exports=
     captures: 0: patterns: [
       { include: '#module_name_prefix' }
       {
-        name: 'support.function.prelude.haskell'
+        name: 'support.function.prelude.$1.haskell'
         match: "{lb}(#{prelude.funct.join('|')}){rb}"
       }
     ]
@@ -489,11 +493,11 @@ module.exports=
     captures: 0: patterns: [
       { include: '#module_name_prefix' }
       {
-          name: 'entity.other.inherited-class.prelude.haskell'
+          name: 'entity.other.inherited-class.prelude.$1.haskell'
           match: "{lb}(#{prelude.classes.join('|')}){rb}"
       }
       {
-          name: 'support.class.prelude.haskell'
+          name: 'support.class.prelude.$1.haskell'
           match: "{lb}(#{prelude.types.join('|')}){rb}"
       }
     ]
@@ -503,7 +507,7 @@ module.exports=
     captures: 0: patterns: [
       { include: '#module_name_prefix' }
       {
-        name: 'support.tag.prelude.haskell'
+        name: 'support.tag.prelude.$1.haskell'
         match: "{lb}(#{prelude.constr.join('|')}){rb}"
       }
     ]

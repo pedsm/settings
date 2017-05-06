@@ -16,15 +16,7 @@ patterns: [
     name: "comment.other.doctype.jade"
   }
   {
-    begin: "^(\\s*)-$"
-    comment: "Unbuffered code block."
-    end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.js"
-    patterns: [
-      {
-        include: "source.js"
-      }
-    ]
+    include: "#unbuffered_code_block"
   }
   {
     begin: "^(\\s*)(script)(?=[.#(\\s])((?![^\\n]*type=)|(?=[^\\n]*type=['\"](text|application)/javascript['\"]))"
@@ -47,7 +39,7 @@ patterns: [
             include: "#filter_args"
           }
           {
-            include: "source.js.jsx"
+            include: "source.embedded.js.jsx"
           }
         ]
       }
@@ -88,7 +80,7 @@ patterns: [
         ]
       }
       {
-        include: "source.js"
+        include: "source.embedded.js"
       }
     ]
   }
@@ -468,6 +460,9 @@ patterns: [
         include: "#buffered_comments"
       }
       {
+        include: "#unbuffered_code_block"
+      }
+      {
         include: "#inline_pug"
       }
       {
@@ -608,7 +603,7 @@ repository:
             include: "#case_when_paren"
           }
           {
-            include: "source.js"
+            include: "source.embedded.js"
           }
         ]
       }
@@ -636,7 +631,7 @@ repository:
         name: "invalid.illegal.name.tag.pug"
       }
       {
-        include: "source.js"
+        include: "source.embedded.js"
       }
     ]
   complete_tag:
@@ -753,7 +748,7 @@ repository:
         name: "js.embedded.control.flow.pug"
         patterns: [
           {
-            include: "source.js"
+            include: "source.embedded.js"
           }
         ]
       }
@@ -870,7 +865,7 @@ repository:
         name: "invalid.illegal.tag.pug"
       }
       {
-        include: "source.js"
+        include: "source.embedded.js"
       }
     ]
   js_braces:
@@ -881,7 +876,7 @@ repository:
         include: "#js_braces"
       }
       {
-        include: "source.js"
+        include: "source.embedded.js"
       }
     ]
   js_brackets:
@@ -892,7 +887,7 @@ repository:
         include: "#js_brackets"
       }
       {
-        include: "source.js"
+        include: "source.embedded.js"
       }
     ]
   js_parens:
@@ -903,7 +898,7 @@ repository:
         include: "#js_parens"
       }
       {
-        include: "source.js"
+        include: "source.embedded.js"
       }
     ]
   mixin_call:
@@ -933,7 +928,7 @@ repository:
             match: "([^\\s(),=/]+)\\s*=\\s*"
           }
           {
-            include: "source.js"
+            include: "source.embedded.js"
           }
         ]
       }
@@ -960,7 +955,7 @@ repository:
       "1":
         name: "constant"
     end: "(?=\\])|$"
-    name: "source.js"
+    name: "source.embedded.js"
     patterns: [
       {
         include: "#js_brackets"
@@ -1038,7 +1033,7 @@ repository:
             include: "#js_braces"
           }
           {
-            include: "source.js"
+            include: "source.embedded.js"
           }
         ]
       }
@@ -1060,7 +1055,7 @@ repository:
             include: "#js_braces"
           }
           {
-            include: "source.js"
+            include: "source.embedded.js"
           }
         ]
       }
@@ -1087,7 +1082,7 @@ repository:
         name: "storage.type.keyword.pug"
       }
       {
-        include: "source.js"
+        include: "source.embedded.js"
       }
     ]
   tag_name:
@@ -1105,7 +1100,7 @@ repository:
             name: "invalid.illegal.tag.pug"
           }
           {
-            include: "source.js"
+            include: "source.embedded.js"
           }
         ]
       }
@@ -1137,11 +1132,21 @@ repository:
         name: "variable.parameter.javascript.embedded.pug"
     comment: "name = function() {}"
     end: "(?=\\])|$"
-    name: "source.js"
+    name: "source.embedded.js"
     patterns: [
       {
         include: "#js_brackets"
       }
+      {
+        include: "source.js"
+      }
+    ]
+  unbuffered_code_block:
+    begin: "^(\\s*)-(\r|\n)"
+    comment: "Unbuffered code block."
+    end: "^(?!(\\1\\s)|\\s*$)"
+    name: "source.embedded.js"
+    patterns: [
       {
         include: "source.js"
       }

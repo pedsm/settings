@@ -1,4 +1,4 @@
-# atom-monokai theme
+# atom-monokai theme [![Build Status](https://travis-ci.org/burntime/atom-monokai.svg?branch=master)](https://travis-ci.org/burntime/atom-monokai)
 
 Atom syntax theme inspired by [monokai](http://www.monokai.nl/blog/2006/07/15/textmate-color-theme/).
 
@@ -19,6 +19,13 @@ apm install atom-monokai
 * Seti UI
 
 Changelog:
+
+* 0.10.9
+  * colorful markdown output #16
+
+* 0.10.5
+  * change deprecated selectors #12
+  * fix recursive variable definition #9
 
 * 0.10.4
   * color for .support.type.exception #10

@@ -1,3 +1,26 @@
+## 1.19.9
+* Always return an array in linter code
+
+## 1.19.8
+* Provide name to linter
+* Typo
+* Readme update
+* Refactor .json advanced settings; add project settings
+
+## 1.19.7
+* Merge branch 'master' of github.com:atom-haskell/haskell-ghc-mod
+* Update CHANGELOG
+* Fix #198
+* [README] Additional note for OS X users (#195) (Maciej Aleksandrowicz)
+
+## 1.19.6
+* Ghc-mod 5.7 is a maintenance release, no new features
+
+## 1.19.5
+* Merge remote-tracking branch 'origin/atom-1.13'
+* s/target/currentTarget/
+* Atom 1.13 update
+
 ## 1.19.4
 * Make interactive-process output buffering more robust
 

@@ -1,11 +1,11 @@
 {CompositeDisposable} = require 'atom'
-fs = require 'fs'
-settings = require './settings'
+existsSync = null
 path = null
 
 # Wrapper for Point or Marker.
 #  For alive editor, use Marker to track up to date position.
 #  For destroyed editor, use Point.
+module.exports =
 class Entry
   constructor: (editor, @point, @URI) ->
     @destroyed = false
@@ -33,15 +33,14 @@ class Entry
   isDestroyed: ->
     @destroyed
 
-  setURI: (@URI) ->
-
   isValid: ->
     return false if @isDestroyed()
+    existsSync ?= require('fs').existsSync
 
-    if settings.get('excludeClosedBuffer')
-      @editor?.isAlive() and fs.existsSync(@URI)
+    if atom.config.get('cursor-history.excludeClosedBuffer')
+      @editor?.isAlive() and existsSync(@URI)
     else
-      fs.existsSync(@URI)
+      existsSync(@URI)
 
   isAtSameRow: (otherEntry) ->
     if otherEntry.point? and @point?
@@ -54,5 +53,3 @@ class Entry
     s = "#{@point}, #{path.basename(@URI)}"
     s += ' [invalid]' unless @isValid()
     s
-
-module.exports = Entry

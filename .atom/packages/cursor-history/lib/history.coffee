@@ -1,9 +1,14 @@
-_ = require 'underscore-plus'
 Entry = require './entry'
-settings = require './settings'
 
+findEditorForPaneByURI = (pane, URI) ->
+  for item in pane.getItems() when atom.workspace.isTextEditor(item)
+    return item if item.getURI() is URI
+
+module.exports =
 class History
-  constructor: ->
+  constructor: (@createLocation) ->
+    @configObserver = atom.config.observe 'cursor-history.keepSingleEntryPerBuffer', (newValue) =>
+      @uniqueByBuffer() if newValue
     @init()
 
   init: ->
@@ -15,8 +20,9 @@ class History
     @init()
 
   destroy: ->
+    @configObserver.dispose()
     entry.destroy() for entry in @entries
-    {@index, @entries} = {}
+    [@index, @entries, @configObserver] = []
 
   findValidIndex: (direction, {URI}={}) ->
     lastIndex = @entries.length - 1
@@ -101,11 +107,14 @@ class History
   #    newEntry(row=7) is appended to end of @entries.
   #    No special @index adjustment.
   #
-  add: (location, {setIndexToHead}={}) ->
+  add: (location, {subject, setIndexToHead}={}) ->
+    if atom.config.get('cursor-history.debug')
+      @log("#{subject} [#{location.type}]")
+
     {editor, point, URI} = location
     newEntry = new Entry(editor, point, URI)
 
-    if settings.get('keepSingleEntryPerBuffer')
+    if atom.config.get('cursor-history.keepSingleEntryPerBuffer')
       for entry in @entries when entry.URI is newEntry.URI
         entry.destroy()
     else
@@ -137,7 +146,7 @@ class History
     @entries = @entries.filter (entry) -> entry.isValid()
 
     # Remove if exceeds max
-    removeCount = @entries.length - settings.get('max')
+    removeCount = @entries.length - atom.config.get('cursor-history.max')
     if removeCount > 0
       removed = @entries.splice(0, removeCount)
       entry.destroy() for entry in removed
@@ -150,4 +159,66 @@ class History
     ary.push "> #{@index}:" if (@index is @entries.length)
     ary.join("\n")
 
-module.exports = History
+  log: (msg) ->
+    console.log """
+      # cursor-history: #{msg}
+      #{@inspect()}\n\n
+      """
+
+  jump: (editor, direction, {withinEditor}={}) ->
+    wasAtHead = @isIndexAtHead()
+    if withinEditor
+      entry = @get(direction, URI: editor.getURI())
+    else
+      entry = @get(direction)
+
+    return unless entry?
+    # FIXME, Explicitly preserve point, URI by setting independent value,
+    # since its might be set null if entry.isAtSameRow()
+    {point, URI} = entry
+
+    needToLog = true
+    if (direction is 'prev') and wasAtHead
+      location = @createLocation(editor, 'prev')
+      @add(location, setIndexToHead: false, subject: "Save head position")
+      needToLog = false
+
+    activePane = atom.workspace.getActivePane()
+    if editor.getURI() is URI
+      @land(editor, point, direction, log: needToLog)
+    else if item = findEditorForPaneByURI(activePane, URI)
+      activePane.activateItem(item)
+      @land(item, point, direction, forceFlash: true, log: needToLog)
+    else
+      searchAllPanes = atom.config.get('cursor-history.searchAllPanes')
+      atom.workspace.open(URI, {searchAllPanes}).then (editor) =>
+        @land(editor, point, direction, forceFlash: true, log: needToLog)
+
+  land: (editor, point, direction, options={}) ->
+    originalRow = editor.getCursorBufferPosition().row
+    editor.setCursorBufferPosition(point, autoscroll: false)
+    editor.scrollToCursorPosition(center: true)
+
+    if atom.config.get('cursor-history.flashOnLand')
+      if options.forceFlash or (originalRow isnt point.row)
+        @flash(editor)
+
+    if atom.config.get('cursor-history.debug') and options.log
+      @log(direction)
+
+  flashMarker: null
+  flash: (editor) ->
+    @flashMarker?.destroy()
+    cursorPosition = editor.getCursorBufferPosition()
+    @flashMarker = editor.markBufferPosition(cursorPosition)
+    decorationOptions = {type: 'line', class: 'cursor-history-flash-line'}
+    editor.decorateMarker(@flashMarker, decorationOptions)
+
+    destroyMarker = =>
+      disposable?.destroy()
+      disposable = null
+      @flashMarker?.destroy()
+
+    disposable = editor.onDidChangeCursorPosition(destroyMarker)
+    # [NOTE] animation-duration has to be shorter than this value(1sec)
+    setTimeout(destroyMarker, 1000)

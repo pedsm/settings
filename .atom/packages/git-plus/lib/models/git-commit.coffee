@@ -19,11 +19,20 @@ getStagedFiles = (repo) ->
 
 getTemplate = (filePath) ->
   if filePath
-    fs.readFileSync(fs.absolute(filePath.trim())).toString().trim()
+    try
+      fs.readFileSync(fs.absolute(filePath.trim())).toString().trim()
+    catch e
+      throw new Error("Your configured commit template file can't be found.")
   else
     ''
 
 prepFile = ({status, filePath, diff, commentChar, template}) ->
+  if commitEditor = atom.workspace.paneForURI(filePath)?.itemForURI(filePath)
+    text = commitEditor.getText()
+    indexOfComments = text.indexOf(commentChar)
+    if indexOfComments > 0
+      template = text.substring(0, indexOfComments - 1)
+
   cwd = Path.dirname(filePath)
   status = status.replace(/\s*\(.*\)\n/g, "\n")
   status = status.trim().replace(/\n/g, "\n#{commentChar} ")
@@ -65,10 +74,9 @@ commit = (directory, filePath) ->
     notifier.addError data
     destroyCommitEditor(filePath)
 
-cleanup = (currentPane, filePath) ->
+cleanup = (currentPane) ->
   currentPane.activate() if currentPane.isAlive()
   disposables.dispose()
-  fs.removeSync filePath
 
 showFile = (filePath) ->
   commitEditor = atom.workspace.paneForURI(filePath)?.itemForURI(filePath)
@@ -88,7 +96,12 @@ module.exports = (repo, {stageChanges, andPush}={}) ->
   filePath = Path.join(repo.getPath(), 'COMMIT_EDITMSG')
   currentPane = atom.workspace.getActivePane()
   commentChar = git.getConfig(repo, 'core.commentchar') ? '#'
-  template = getTemplate(git.getConfig(repo, 'commit.template'))
+  try
+    template = getTemplate(git.getConfig(repo, 'commit.template'))
+  catch e
+    notifier.addError(e.message)
+    return Promise.reject(e.message)
+
   init = -> getStagedFiles(repo).then (status) ->
     if verboseCommitsEnabled()
       args = ['diff', '--color=never', '--staged']
@@ -100,15 +113,17 @@ module.exports = (repo, {stageChanges, andPush}={}) ->
   startCommit = ->
     showFile filePath
     .then (textEditor) ->
+      disposables.dispose()
+      disposables = new CompositeDisposable
       disposables.add textEditor.onDidSave ->
         trimFile(filePath, commentChar) if verboseCommitsEnabled()
         commit(repo.getWorkingDirectory(), filePath)
         .then -> GitPush(repo) if andPush
-      disposables.add textEditor.onDidDestroy -> cleanup currentPane, filePath
-    .catch (msg) -> notifier.addError msg
+      disposables.add textEditor.onDidDestroy -> cleanup(currentPane)
+    .catch(notifier.addError)
 
   if stageChanges
-    git.add(repo, update: stageChanges).then(-> init()).then -> startCommit()
+    git.add(repo, update: true).then(init).then(startCommit)
   else
     init().then -> startCommit()
     .catch (message) ->

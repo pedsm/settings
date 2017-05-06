@@ -4,8 +4,6 @@ quibble = require 'quibble'
 fs = require 'fs-plus'
 {GitRepository} = require 'atom'
 git = require '../../lib/git'
-GitPush = quibble '../../lib/models/git-push', jasmine.createSpy('GitPush')
-GitCommit = require '../../lib/models/git-commit'
 notifier = require '../../lib/notifier'
 
 commentChar = '%'
@@ -15,9 +13,12 @@ file = Path.join(workingDirectory, 'fake.file')
 repo = null
 
 describe "GitCommit", ->
+  GitPush = quibble '../../lib/models/git-push', jasmine.createSpy('GitPush')
+  GitCommit = require '../../lib/models/git-commit'
   beforeEach ->
     fs.writeFileSync file, 'foobar'
     waitsForPromise -> git.cmd(['init'], cwd: workingDirectory)
+    waitsForPromise -> git.cmd(['config', 'user.useconfigonly', 'false'], cwd: workingDirectory)
     waitsForPromise -> git.cmd(['config', 'core.commentchar', commentChar], cwd: workingDirectory)
     waitsForPromise -> git.cmd(['add', file], cwd: workingDirectory)
     waitsForPromise -> git.cmd(['commit', '--allow-empty', '--allow-empty-message', '-m', ''], cwd: workingDirectory)
@@ -58,21 +59,31 @@ describe "GitCommit", ->
     it "cancels the commit on textEditor destroy", ->
       editor = atom.workspace.paneForURI(commitFilePath).itemForURI(commitFilePath)
       editor.destroy()
-      expect(fs.existsSync(commitFilePath)).toBe false
 
   describe "when commit.template config is set", ->
-    beforeEach ->
+    it "pre-populates the commit with the template message", ->
       templateFile = Path.join(os.tmpdir(), 'commit-template')
       fs.writeFileSync templateFile, 'foobar'
       waitsForPromise -> git.cmd(['config', 'commit.template', templateFile], cwd: workingDirectory)
       fs.writeFileSync file, Math.random()
       waitsForPromise -> git.cmd(['add', file], cwd: workingDirectory)
       waitsForPromise -> GitCommit(repo)
+      runs ->
+        editor = atom.workspace.paneForURI(commitFilePath).itemForURI(commitFilePath)
+        expect(editor.getText().startsWith('foobar')).toBe true
+        git.cmd(['config', '--unset', 'commit.template'], cwd: workingDirectory)
+        fs.removeSync(templateFile)
 
-    it "pre-populates the commit with the template message", ->
-      editor = atom.workspace.paneForURI(commitFilePath).itemForURI(commitFilePath)
-      expect(editor.getText().startsWith('foobar')).toBe true
-      git.cmd(['config', '--unset', 'commit.template'], cwd: workingDirectory)
+    describe "when the template file can't be found", ->
+      it "notifies user", ->
+        spyOn(notifier, 'addError')
+        templateFile = Path.join(os.tmpdir(), 'commit-template')
+        waitsForPromise -> git.cmd(['config', 'commit.template', templateFile], cwd: workingDirectory)
+        fs.writeFileSync file, Math.random()
+        waitsForPromise -> git.cmd(['add', file], cwd: workingDirectory)
+        waitsForPromise -> GitCommit(repo).catch -> Promise.resolve()
+        runs ->
+          expect(notifier.addError).toHaveBeenCalledWith "Your configured commit template file can't be found."
 
   describe "when 'stageChanges' option is true", ->
     beforeEach ->

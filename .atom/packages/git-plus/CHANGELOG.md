@@ -1,8 +1,73 @@
 ## Changelog
 
+### 7.7.0
+- Merge [#653](https://github.com/akonwi/git-plus/pull/653) (@jgnagy)
+  - Adds a new config in 'Tags' section to sign tags with GPG
+
+### 7.6.0
+- Merge [#648](https://github.com/akonwi/git-plus/pull/648) (@ios122), Which allows executing context actions on the git root path of tree-view
+- Update README with details of list views that allow selecting multiple options
+
+### 7.5.0
+- Bug fix where trying to pull from a non-existent upstream branch threw an error
+- Merge [#634](https://github.com/akonwi/git-plus/pull/634) (@danielbayley), Which allows using right click or a modifier key
+to open the new branch command by clicking on the branch name in the status-bar
+- Fix [#633] (@oppin)
+
+### 7.4.0
+- Adds a new command (`Fetch all`), thanks to @danielbayley
+  - [Experimental] Setting for auto fetching the currently open repos
+- Fixed bug where atom's git highlighting in the tree-view and branch in the status bar didn't change after custom commands ran
+
+### 7.3.3
+- Fixed [#631](https://github.com/akonwi/git-plus/issues/631)
+
+### 7.3.2
+- Fixed [#627](https://github.com/akonwi/git-plus/issues/627)
+- Removed `Pull using rebase` command from the packages menu in OS status bar
+- The `run` function for custom commands now returns a promise that resolves with the git output. Which allows for chaining for more complicated commands.
+
+### 7.3.1
+- Fixes [#626](https://github.com/akonwi/git-plus/issues/626)
+- Change location of the split-diff generated file
+- Removed some dependencies
+
+### 7.3.0
+- [Experimental Features] Show diffs between branches (@yacut)
+- [Experimental Features] Use the split-diff package to show diffs for a single file (@yacut)
+
+### 7.2.2
+- Remove the git+ logo from status-bar when there is no git project in workspace and add it when there is a git project [#613](https://github.com/akonwi/git-plus/issues/613)
+- Fixes [#614](https://github.com/akonwi/git-plus/issues/614)
+
+### 7.2.1
+- Swapped pin icon in the status-bar for 'git+'. [#613](https://github.com/akonwi/git-plus/issues/613)
+- Removed analytics
+
+### 7.2.0
+- Fixes [#596](https://github.com/akonwi/git-plus/issues/596)
+  - __BREAKING__ the config option of `Pull From Upstream` is now the default behavior.
+  - If your git config for 'push.default' is set to nothing or you want to intentionally choose a branch, turn on the 'Prompt for branch...' option
+- Merges [#604](https://github.com/akonwi/git-plus/issues/604) thanks to (@lgeiger)
+
+### 7.1.1
+- Fixes [#598](https://github.com/akonwi/git-plus/issues/598)
+- Fixes [#599](https://github.com/akonwi/git-plus/issues/599)
+
+### 7.1.0
+- Fixes [#573](https://github.com/akonwi/git-plus/issues/573)
+
+### 7.0.7
+- [[#587]](https://github.com/akonwi/git-plus/issues/587) - Refactoring around tree-view context actions
+
+### 7.0.6
+- [[#584]](https://github.com/akonwi/git-plus/issues/584)-The COMMIT_EDITMSG file is kept after commit attempts so in case of failure the previously typed message is easily retrievable
+- Fixes [#591](https://github.com/akonwi/git-plus/issues/591)
+- Fixes [#593](https://github.com/akonwi/git-plus/issues/593)
+
 ### 7.0.5
-- Fixes [#587](https://github.com/akonwi/git-plus/issues/587)
-- Fixes [#584](https://github.com/akonwi/git-plus/issues/584)
+- [[#587]](https://github.com/akonwi/git-plus/issues/587) Gracefully handle unavailable repo error
+- Fixes [#578](https://github.com/akonwi/git-plus/issues/578)
 
 ### 7.0.4
 - Minor changes

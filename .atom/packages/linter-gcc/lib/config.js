@@ -43,10 +43,15 @@ module.exports.settings = function () {
       console.log("linter-gcc: Using configuration page settings");
     }
   }
-
+  var commands_file = ""
   if (config_file != "") {
       delete require.cache[config_file];
       var config_data = require(config_file);
+      if ("compileCommandsFile" in config_data) {
+        commands_file = config_data.compileCommandsFile;
+      } else {
+        commands_file = atom.config.get("linter-gcc.compileCommandsFile");
+      }
       return {
         execPath: config_data.execPath,
         gccIncludePaths: config_data.gccIncludePaths,
@@ -56,7 +61,8 @@ module.exports.settings = function () {
         gccErrorLimit: config_data.gccErrorLimit,
         gccErrorString: config_data.gccErrorString,
         gccWarningString: config_data.gccWarningString,
-        gccNoteString: config_data.gccNoteString
+        gccNoteString: config_data.gccNoteString,
+        compileCommandsFile: commands_file
       };
   } else {
       return {
@@ -68,7 +74,8 @@ module.exports.settings = function () {
           gccErrorLimit: atom.config.get("linter-gcc.gccErrorLimit"),
           gccErrorString: atom.config.get("linter-gcc.gccErrorString"),
           gccWarningString: atom.config.get("linter-gcc.gccWarningString"),
-          gccNoteString: atom.config.get("linter-gcc.gccNoteString")
+          gccNoteString: atom.config.get("linter-gcc.gccNoteString"),
+          compileCommandsFile: atom.config.get("linter-gcc.compileCommandsFile"),
       };
   }
 

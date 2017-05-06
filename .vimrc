@@ -15,7 +15,7 @@ map <F2> :NERDTree<CR>
 " this allows for the usage of the system clipboard
 map <F5> "+
 imap jj <ESC>
-nmap <F7> :MakeTags <CR> :TagbarToggle<CR>
+nmap <F7> :TagbarToggle<CR>
 
 "presentation VIM MODE
 " map <F2> <PageDown>
@@ -54,6 +54,9 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/syntastic'
 Plugin 'pedsm/vim-paragraph'
+Plugin 'rust-lang/rust.vim'
+Plugin 'KabbAmine/zeavim.vim'
+Plugin 'digitaltoad/vim-pug'
 " Snippets for days
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -79,7 +82,10 @@ set background=dark
 colorscheme molokai
 let g:airline_theme = 'badwolf'
 " Gvim set up
-set guioptions-=T
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
 set gfn=Ubuntu\ Mono\ derivative\ Powerline\ 14
 
 "Plugin 'file://home/pedro/Dev/vim-powerline/plugin/Powerline.vim'
@@ -117,6 +123,15 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
 
 
 let g:airline#extensions#tabline#enabled = 1

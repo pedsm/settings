@@ -75,7 +75,7 @@ describe "Language-Haskell", ->
       expect(tokens[2]).toEqual value: '`', scopes: ['source.haskell', 'keyword.operator.function.infix.haskell', 'punctuation.definition.entity.haskell']
 
   describe "keywords", ->
-    controlKeywords = ['case', 'of', 'in', 'where', 'if', 'then', 'else']
+    controlKeywords = ['do', 'if', 'then', 'else', 'case', 'of', 'let', 'in', 'default', 'mdo', 'rec', 'proc']
 
     for scope, keyword of controlKeywords
       it "tokenizes #{keyword} as a keyword", ->
@@ -140,15 +140,15 @@ describe "Language-Haskell", ->
         , "=" : ['keyword.operator.haskell']
         , " "
         , "("
-        , "putStrLn" : ['support.function.prelude.haskell' ]
+        , "putStrLn" : ['support.function.prelude.putStrLn.haskell' ]
         , " "
         , "::" : ['keyword.other.double-colon.haskell']
         , " "
-        , "String" : ['entity.name.type.haskell', 'support.class.prelude.haskell']
+        , "String" : ['entity.name.type.haskell', 'support.class.prelude.String.haskell']
         , " "
         , "->" : ['keyword.other.arrow.haskell']
         , " "
-        , "IO" : ['entity.name.type.haskell', 'support.class.prelude.haskell']
+        , "IO" : ['entity.name.type.haskell', 'support.class.prelude.IO.haskell']
         , " "
         , "()" : ['constant.language.unit.haskell' ]
         , ")"
@@ -160,7 +160,7 @@ describe "Language-Haskell", ->
         , " "
         , "::" : ['keyword.other.double-colon.haskell']
         , " "
-        , "String" : ['entity.name.type.haskell', 'support.class.prelude.haskell']
+        , "String" : ['entity.name.type.haskell', 'support.class.prelude.String.haskell']
         , ")"
         ]
       ]
@@ -189,7 +189,7 @@ describe "Language-Haskell", ->
         , ' '
         , '=' : [ 'keyword.operator.haskell' ]
         , ' '
-        , 'putStrLn' : [ 'identifier.haskell', 'support.function.prelude.haskell' ]
+        , 'putStrLn' : [ 'identifier.haskell', 'support.function.prelude.putStrLn.haskell' ]
         , ' '
         , {'"' : [ 'string.quoted.double.haskell', 'punctuation.definition.string.begin.haskell' ]}
         , {'Hello World' : [ 'string.quoted.double.haskell' ]}
@@ -197,7 +197,7 @@ describe "Language-Haskell", ->
         , ' '
         , '::' : [ 'keyword.other.double-colon.haskell' ]
         , ' '
-        , 'IO' : [ 'meta.type-signature.haskell', 'entity.name.type.haskell', 'support.class.prelude.haskell' ]
+        , 'IO' : [ 'meta.type-signature.haskell', 'entity.name.type.haskell', 'support.class.prelude.IO.haskell' ]
         , ' '
         , '()' : [ 'meta.type-signature.haskell', 'constant.language.unit.haskell' ]
         ]
@@ -332,11 +332,11 @@ describe "Language-Haskell", ->
         { value : ' ', scopes : [ 'source.haskell' ] }
         { value : '::', scopes : [ 'source.haskell', 'keyword.other.double-colon.haskell' ] }
         { value : ' ', scopes : [ 'source.haskell', 'meta.type-signature.haskell' ] }
-        { value : 'String', scopes : [ 'source.haskell', 'meta.type-signature.haskell', 'entity.name.type.haskell', 'support.class.prelude.haskell' ] }
+        { value : 'String', scopes : [ 'source.haskell', 'meta.type-signature.haskell', 'entity.name.type.haskell', 'support.class.prelude.String.haskell' ] }
         { value : ' ', scopes : [ 'source.haskell', 'meta.type-signature.haskell' ] }
         { value : '<-', scopes : [ 'source.haskell', 'keyword.operator.haskell' ] }
         { value : ' ', scopes : [ 'source.haskell' ] }
-        { value : 'undefined', scopes : [ 'source.haskell', 'identifier.haskell', 'support.function.prelude.haskell' ] }
+        { value : 'undefined', scopes : [ 'source.haskell', 'identifier.haskell', 'support.function.prelude.undefined.haskell' ] }
         ]
     it "=", ->
       data = "x :: String = undefined"
@@ -347,11 +347,11 @@ describe "Language-Haskell", ->
         { value : ' ', scopes : [ 'source.haskell' ] }
         { value : '::', scopes : [ 'source.haskell', 'keyword.other.double-colon.haskell' ] }
         { value : ' ', scopes : [ 'source.haskell', 'meta.type-signature.haskell' ] }
-        { value : 'String', scopes : [ 'source.haskell', 'meta.type-signature.haskell', 'entity.name.type.haskell', 'support.class.prelude.haskell' ] }
+        { value : 'String', scopes : [ 'source.haskell', 'meta.type-signature.haskell', 'entity.name.type.haskell', 'support.class.prelude.String.haskell' ] }
         { value : ' ', scopes : [ 'source.haskell', 'meta.type-signature.haskell' ] }
         { value : '=', scopes : [ 'source.haskell', 'keyword.operator.assignment.haskell' ] }
         { value : ' ', scopes : [ 'source.haskell' ] }
-        { value : 'undefined', scopes : [ 'source.haskell', 'identifier.haskell', 'support.function.prelude.haskell' ] }
+        { value : 'undefined', scopes : [ 'source.haskell', 'identifier.haskell', 'support.function.prelude.undefined.haskell' ] }
         ]
     it "still works for type-op signatures", ->
       data = "smth :: a <-- b"
@@ -475,4 +475,14 @@ describe "Language-Haskell", ->
                             [11, ['meta.declaration.exports.haskell', 'entity.name.function.haskell']]
                             [13, ['meta.declaration.exports.haskell', 'meta.other.constructor-list.haskell',
                                   'entity.name.tag.haskell']]
+                            ]]
+  describe "regression test for comments after module name in imports", ->
+    it "parses comments after module names", ->
+      g = grammarExpect grammar, 'import Module -- comment'
+      g.toHaveTokens [['import', ' ', 'Module', ' ', '--', ' comment', '']]
+      g.toHaveScopes [['source.haskell', 'meta.import.haskell']]
+      g.tokenToHaveScopes [[[2, ['support.other.module.haskell']]
+                            [4, ['comment.line.double-dash.haskell', 'punctuation.definition.comment.haskell']]
+                            [5, ['comment.line.double-dash.haskell']]
+                            [6, ['comment.line.double-dash.haskell']]
                             ]]

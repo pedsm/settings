@@ -65,12 +65,13 @@ describe "Snippets", ->
     waitsForPromise ->
       atom.packages.activatePackage("language-haskell")
     waitsForPromise ->
-      atom.packages.activatePackage("snippets")
-    runs ->
-      Snippets = atom.packages.getActivePackage('snippets').mainModule
-    waitsForPromise ->
-      new Promise (resolve) ->
-        Snippets.onDidLoadSnippets -> resolve()
+      snippets = atom.packages.getLoadedPackage('snippets') ? \
+        atom.packages.loadPackage("#{process.env.HOME}/.atom/packages/snippets")
+      snippets.activate()
+      .then ->
+        Snippets = snippets.mainModule
+        new Promise (resolve) ->
+          Snippets.onDidLoadSnippets -> resolve()
 
   describe 'haskell', ->
     beforeEach ->

@@ -143,7 +143,7 @@ module.exports = HaskellGhcMod =
     experimental:
       type: 'boolean'
       default: false
-      description: 'Enable experimentai features, which are expected to land in
+      description: 'Enable experimental features, which are expected to land in
                     next release of ghc-mod. ENABLE ONLY IF YOU KNOW WHAT YOU
                     ARE DOING'
       order: 999
@@ -200,14 +200,15 @@ module.exports = HaskellGhcMod =
       enabledConf: 'onSaveLint'
     ].map ({func, lintOnFly, enabledConf}) =>
       linter =
+      name: 'haskell-ghc-mod'
       grammarScopes: ['source.haskell', 'text.tex.latex.haskell']
       scope: 'file'
       lintOnFly: false
       lint: (textEditor) =>
-        return unless @process?
-        return unless atom.config.get("haskell-ghc-mod.#{enabledConf}") or
+        return [] unless @process?
+        return [] unless atom.config.get("haskell-ghc-mod.#{enabledConf}") or
           atom.config.get("haskell-ghc-mod.#{lintOnFly}")
-        return if textEditor.isEmpty()
+        return [] if textEditor.isEmpty()
         @process[func](textEditor.getBuffer(), lintOnFly).then (res) ->
           res.map ({uri, position, message, severity}) ->
             [message, messages...] = message.split /^(?!\s)/gm
