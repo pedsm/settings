@@ -2,13 +2,12 @@ set nocompatible              " be iMproved, required
 filetype off
 command! MakeTags !ctags -R .
 command! CLatex !pdflatex %; rm *.aux; rm *.log; rm *.out; rm *.toc
-command! CPhp !php %
-" OP Easter eggs
+command EditRC :e ~/.vimrc
+
+"Easter eggs
 command! Weather !curl -4 wttr.in
 command! Moon !curl -4 wttr.in/Moon
-" end of easter eggs
-command Lorem :-1read ~/home/pedro/.vim/.skeleton/lorem.txt<CR>
-command EditRC :e ~/.vimrc
+
 " new mappings use them
 map <C-i> gg=G<C-o><C-o>zz:%s/\s\+$//e<CR>
 map <F2> :NERDTree<CR>
@@ -34,34 +33,32 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mattn/emmet-vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'majutsushi/tagbar'
-Plugin 'elzr/vim-json'
 Plugin 'SearchComplete'
 Plugin 'ap/vim-css-color'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/syntastic'
 Plugin 'pedsm/vim-paragraph'
-Plugin 'rust-lang/rust.vim'
-Plugin 'KabbAmine/zeavim.vim'
+Plugin 'editorconfig/editorconfig-vim'
+"Language support
+Plugin 'scrooloose/syntastic'
+Plugin 'mattn/emmet-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'elzr/vim-json'
 Plugin 'digitaltoad/vim-pug'
+Plugin 'rust-lang/rust.vim'
+
 " Snippets for days
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-Plugin 'editorconfig/editorconfig-vim'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="`"
 let g:UltiSnipsJumpForwardTrigger="="
@@ -74,7 +71,6 @@ if v:version >= 800
     Plugin 'skywind3000/asyncrun.vim'
     Plugin 'pedsm/sprint'
     Plugin 'metakirby5/codi.vim'
-    Plugin 'w0rp/ale'
 endif
 
 
@@ -105,6 +101,7 @@ set hlsearch
 set noshowmode
 let &t_Co=256
 
+"Airline settings
 let g:AutoPairsFlyMode = 0
 let g:Powerline_symbols = 'fancy'
 
@@ -123,6 +120,9 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+let g:airline#extensions#tabline#enabled = 1
+
+"nvim
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
@@ -131,11 +131,6 @@ nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
-
-
-
-let g:airline#extensions#tabline#enabled = 1
-
 
 syntax enable
 filetype plugin indent on
