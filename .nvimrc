@@ -48,13 +48,21 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
 Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
 
-" Vim 8.0 territory
-if v:version >= 800
-    Plug 'skywind3000/asyncrun.vim'
-    Plug 'pedsm/sprint'
-    Plug 'metakirby5/codi.vim'
-endif
+
+"nvim plguins
+Plug 'skywind3000/asyncrun.vim'
+Plug 'pedsm/sprint'
+Plug 'metakirby5/codi.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-ternjs'
+Plug 'davidhalter/jedi'
+Plug 'mhartington/nvim-typescript'
+"Deoplete master race
+let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 
