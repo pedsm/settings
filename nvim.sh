@@ -9,4 +9,5 @@ mkdir ~/.config/nvim/autoload
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln .nvimrc ~/.config/nvim/init.vim
+sudo pip3 install neovim
 nvim +PlugInstall +qall
