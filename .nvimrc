@@ -4,10 +4,13 @@ command! MakeTags !ctags -R .
 command! CLatex !pdflatex %; rm *.aux; rm *.log; rm *.out; rm *.toc
 command EditRC :e ~/.vimrc
 
+"C++ header file
+map <C-h> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+map <A-h> :sp %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
 "Easter eggs
 command! Weather !curl -4 wttr.in
 command! Moon !curl -4 wttr.in/Moon
-
 " new mappings use them
 map <C-i> gg=G<C-o><C-o>zz:%s/\s\+$//e<CR>
 map <F2> :NERDTree<CR>
@@ -15,12 +18,6 @@ map <F2> :NERDTree<CR>
 map <F5> "+
 imap jj <ESC>
 nmap <F7> :TagbarToggle<CR>
-
-"presentation VIM MODE
-" map <F2> <PageDown>
-" map <F3> <PageUp>
-" map <F4> >>gUU
-" map <F5> u
 
 
 call plug#begin('~/.vim/plugged')
@@ -41,37 +38,47 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'pedsm/vim-paragraph'
 Plug 'editorconfig/editorconfig-vim'
 "Language support
-Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
 Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
 Plug 'rust-lang/rust.vim'
-Plug 'leafgarland/typescript-vim'
-
+" Plug 'leafgarland/typescript-vim'
+"colours
+Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
 
 "nvim plguins
+Plug 'Shougo/vimproc.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'pedsm/sprint'
 Plug 'metakirby5/codi.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-ternjs'
 Plug 'davidhalter/jedi'
 Plug 'mhartington/nvim-typescript'
+Plug 'landaire/deoplete-d'
+Plug 'Quramy/tsuquyomi'
+" Plug 'neomake/neomake'
+Plug 'leafgarland/typescript-vim'
+Plug 'w0rp/ale'
+let g:ale_typescript_tslint_use_global = 1
 "Deoplete master race
 let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 
-set background=dark
-"colorscheme molokai
-let g:airline_theme = 'badwolf'
+let g:onedark_termcolors=256
+" let g:airline_theme = 'badwolf'
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:airline_theme = 'one'
+let g:one_allow_italics = 1 " I love italic for comments
+colorscheme onedark
+" set background=dark " for the dark version
 
 
-filetype plugin indent on    " required
 set wrapscan
 set relativenumber
 set expandtab
@@ -83,7 +90,7 @@ set encoding=utf-8 " Necessary to show Unicode glyphs
 " set listchars=tab:>-,trail:_ list
 set hlsearch
 set noshowmode
-let &t_Co=256
+" let &t_Co=256
 
 "Airline settings
 let g:AutoPairsFlyMode = 0
