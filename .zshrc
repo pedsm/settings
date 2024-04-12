@@ -1,5 +1,14 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+# zmodload zsh/zprof
+DISABLE_AUTO_UPDATE="true"
+
+# This is an optimisation to only chceck compinit once a day
+# https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH:./node_modules/.bin
 
@@ -72,7 +81,7 @@ CASE_SENSITIVE="false"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z freetrade)
+plugins=(git z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,70 +111,53 @@ fi
 alias vim="nvim"
 alias gst="git status"
 alias ga="git add ."
-alias dc="docker-compose"
+alias dc="docker compose"
 # alias cat="bat"
 
 # disable functions on zsh for firebase functions to work properly
-disable r functions
+# disable r functions
 
 # Make z jump around work
-. /usr/local/etc/profile.d/z.sh
-
-## NVM stuff
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
+# . /usr/local/etc/profile.d/z.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/pedrom/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pedrom/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/pedrom/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pedrom/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 # Ruby
 # source /usr/local/opt/chruby/share/chruby/chruby.sh
 export PATH="/usr/local/opt/bison/bin:$PATH"
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-
-# pyenv stuff
-if command -v pyenv 1>/dev/null 2>&1; then
-eval "$(pyenv init - zsh)"
-fi
-
-export PATH="$HOME/.pyenv/shims:$PATH"
-export PATH="/usr/local/bin:$PATH"
-
-export PATH=${PATH}:`go env GOPATH`/bin
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
-export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 
 eval "$(fnm env)"
 
 [ -f "/Users/pedrom/.ghcup/env" ] && source "/Users/pedrom/.ghcup/env" # ghcup-env
 
 alias kube="kubectl"
+alias pretty="pino-pretty -m message"
 
 # pnpm
 export PNPM_HOME="/Users/pedrom/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+export PATH=$PATH:/Users/pedrom/.kubescape/bin
+
+export PATH=~/Library/Android/sdk/tools:$PATH
+export PATH=~/Library/Android/sdk/platform-tools:$PATH
+
+# bun completions
+# [ -s "/Users/pedrom/.bun/_bun" ] && source "/Users/pedrom/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# zprof
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/pedrom/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pedrom/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/pedrom/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pedrom/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
