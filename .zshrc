@@ -13,7 +13,7 @@ compinit -C
 # export PATH=$HOME/bin:/usr/local/bin:$PATH:./node_modules/.bin
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/pedrom/.oh-my-zsh"
+export ZSH="/Users/pedro/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -129,23 +129,23 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 
 eval "$(fnm env)"
 
-[ -f "/Users/pedrom/.ghcup/env" ] && source "/Users/pedrom/.ghcup/env" # ghcup-env
+[ -f "/Users/pedro/.ghcup/env" ] && source "/Users/pedro/.ghcup/env" # ghcup-env
 
 alias kube="kubectl"
 alias pretty="pino-pretty -m message"
 
 # pnpm
-export PNPM_HOME="/Users/pedrom/Library/pnpm"
+export PNPM_HOME="/Users/pedro/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-export PATH=$PATH:/Users/pedrom/.kubescape/bin
+export PATH=$PATH:/Users/pedro/.kubescape/bin
 
 export PATH=~/Library/Android/sdk/tools:$PATH
 export PATH=~/Library/Android/sdk/platform-tools:$PATH
 
 # bun completions
-# [ -s "/Users/pedrom/.bun/_bun" ] && source "/Users/pedrom/.bun/_bun"
+# [ -s "/Users/pedro/.bun/_bun" ] && source "/Users/pedro/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -157,7 +157,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # zprof
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/pedrom/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pedrom/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/pedro/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pedro/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/pedrom/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pedrom/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/pedro/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pedro/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
