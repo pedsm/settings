@@ -130,7 +130,7 @@ filetype plugin indent on
 colorscheme dracula
 
 " Lua stuff 
-lua << EOF
-require "ui"
-require "core"
-EOF
+" lua << EOF
+" require "ui"
+" require "core"
+" EOF
